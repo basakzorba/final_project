@@ -9,18 +9,18 @@ app.secret_key = "your_secret_key"  # Required for session management
 file_path = Path(__file__).parent / "flashcards.json"
 manager = FlashcardManager(file_path)
 
-@app.route("/")
+@app.route("/general_biology_quiz/")
 def home():
     return render_template("home.html")
 
-@app.route("/reset")
+@app.route("/general_biology_quiz/reset")
 def reset():
     session.pop("current_question", None)
     session.pop("score", None)
     session.pop("answers", None)
-    return redirect("/")
+    return redirect("/general_biology_quiz/")
 
-@app.route("/start_quiz", methods=["GET", "POST"])
+@app.route("/general_biology_quiz/start_quiz", methods=["GET", "POST"])
 def start_quiz():
     if "current_question" not in session:
         session["current_question"] = 0
@@ -57,4 +57,4 @@ def start_quiz():
     return render_template("question.html", card=card, question_number=current_question + 1, total=len(manager.flashcards))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5001, debug=True)
