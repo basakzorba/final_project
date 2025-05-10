@@ -4,7 +4,9 @@ from pathlib import Path
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key"  # Required for session management
-file_path = Path("/Users/basakisilzorba/Desktop/REDI/Python_2025/Lessons/python_projects/Redi_python_s25/Final_Project/flashcards.json")
+
+# Use a relative path for the JSON file
+file_path = Path(__file__).parent / "flashcards.json"
 manager = FlashcardManager(file_path)
 
 @app.route("/")
@@ -55,4 +57,4 @@ def start_quiz():
     return render_template("question.html", card=card, question_number=current_question + 1, total=len(manager.flashcards))
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5001, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
