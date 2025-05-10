@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <form method="POST">
+        {% set counter = 0 %}
+        {% for card in flashcards %}
+            <p><strong>Definition:</strong> {{ card.definition }}</p>
+            <input type="text" name="answer_{{ counter }}" placeholder="Enter the term">
+            {% set counter = counter + 1 %}
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

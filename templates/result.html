@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Result</title>
+    <style>
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #333;
+            background-color: white;
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #f4f4f4;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz Complete!</h1>
+    <p>Your final score: {{ score }}/{{ total }}</p>
+    <h2>Answers:</h2>
+    <ul>
+        {% for answer in answers %}
+            <li>
+                <p><strong>Definition:</strong> {{ answer.definition }}</p>
+                <p><strong>Your Answer:</strong> {{ answer.user_answer }}</p>
+                <p><strong>Correct Answer:</strong> {{ answer.term }}</p>
+                {% if answer.is_correct %}
+                    <p style="color: green;"><strong>You answered correctly!</strong></p>
+                {% else %}
+                    <p style="color: red;"><strong>You answered incorrectly.</strong></p>
+                {% endif %}
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+    <a href="/reset" class="back-button">Go Back to Home</a>
+</body>
+</html>

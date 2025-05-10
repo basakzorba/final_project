@@ -1,0 +1,43 @@
+[
+    {
+        "term": "Cell",
+        "definition": "The basic structural and functional unit of all living organisms."
+    },
+    {
+        "term": "Tissue",
+        "definition": "A group of similar cells that perform a specific function."
+    },
+    {
+        "term": "Organ",
+        "definition": "A structure made up of different tissues that work together to perform a specific function."
+    },
+    {
+        "term": "Organism",
+        "definition": "An individual living entity that can function on its own."
+    },
+    {
+        "term": "Homeostasis",
+        "definition": "The process by which living organisms maintain a stable internal environment."
+    },
+    {
+        "term": "Metabolism",
+        "definition": "The sum of all chemical reactions that occur within a living organism."
+    },
+    {
+        "term": "Cell Division",
+        "definition": "The process by which a parent cell divides into two or more daughter cells."
+    },
+
+    {
+        "term": "Chromosome",
+        "definition": "A structure made of DNA and proteins that contains genetic information."
+    },
+    {
+        "term": "Gene",
+        "definition": "A segment of DNA that contains the instructions for making a specific protein."
+    },
+    {
+        "term": "Protein",
+        "definition": "A molecule made up of amino acids that performs various functions in the body."
+    }
+]

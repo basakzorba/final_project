@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question {{ question_number }}</title>
+    <style>
+        button {
+            font-size: 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #333;
+            background-color: white;
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #f4f4f4;
+            color: black;
+        }
+        input[type="text"] {
+            font-size: 1.5rem;
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Question {{ question_number }} of {{ total }}</h1>
+    <p><strong>Definition:</strong> {{ card.definition }}</p>
+    <form method="POST">
+        <input type="text" name="answer" placeholder="Enter the term" required>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="/reset" class="back-button">Go Back to Home</a>
+</body>
+</html>
