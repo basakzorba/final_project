@@ -9,8 +9,12 @@ app.secret_key = "your_secret_key"  # Required for session management
 file_path = Path(__file__).parent / "flashcards.json"
 manager = FlashcardManager(file_path)
 
-@app.route("/general_biology_quiz/")
+@app.route("/")
 def home():
+    return render_template("home.html")
+
+@app.route("/general_biology_quiz/")
+def quiz_home():
     return render_template("home.html")
 
 @app.route("/general_biology_quiz/reset")
@@ -20,8 +24,10 @@ def reset():
     session.pop("answers", None)
     return redirect("/general_biology_quiz/")
 
-@app.route("/general_biology_quiz/start_quiz", methods=["GET", "POST"])
+@app.route("/general_biology_quiz/start_quiz", methods=["GET","POST"])
 def start_quiz():
+    if request.method == "GET":
+        print("inside get")
     if "current_question" not in session:
         session["current_question"] = 0
         session["score"] = 0
@@ -32,11 +38,13 @@ def start_quiz():
         # Quiz is complete, show the result
         score = session["score"]
         answers = session["answers"]
-        session.pop("current_question", None)
-        session.pop("score", None)
-        session.pop("answers", None)
-        return render_template("result.html", score=score, total=len(manager.flashcards), answers=answers)
+        session.pop("current_question", "None")
+        session.pop("score", "None")
+        session.pop("answers", "None")
 
+        print("Satir 45")
+        return render_template("result.html", score=score, total=len(manager.flashcards), answers=answers)
+        
     card = manager.flashcards[current_question]
 
     if request.method == "POST":
@@ -57,4 +65,4 @@ def start_quiz():
     return render_template("question.html", card=card, question_number=current_question + 1, total=len(manager.flashcards))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    app.run(host="0.0.0.0", port=5002, debug=True)
