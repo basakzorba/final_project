@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-from flashcardManager import FlashcardManager
+from quizcardManager import QuizcardManager
 from pathlib import Path
 
 app = Flask(__name__)
-app.secret_key = "your_secret_key"  # Required for session management
+app.secret_key = "basak"
 
 # Use a relative path for the JSON file
-file_path = Path(__file__).parent / "flashcards.json"
-manager = FlashcardManager(file_path)
+file_path = Path(__file__).parent / "quizcards.json"
+manager = QuizcardManager(file_path)
 
 @app.route("/")
 def home():
@@ -24,28 +24,26 @@ def reset():
     session.pop("answers", None)
     return redirect("/general_biology_quiz/")
 
-@app.route("/general_biology_quiz/start_quiz", methods=["GET","POST"])
-def start_quiz():
-    if request.method == "GET":
-        print("inside get")
+@app.route("/general_biology_quiz/start_question", methods=["GET","POST"])
+def start_question():
     if "current_question" not in session:
-        session["current_question"] = 0
-        session["score"] = 0
-        session["answers"] = []  # Store user's answers and correctness
+        session["current_question"] = 0 # Store the current question index
+        session["score"] = 0 # Store user's score
+        session["answers"] = []  # Store user's answers
 
     current_question = session["current_question"]
-    if current_question >= len(manager.flashcards):
+    if current_question >= len(manager.quizcards):
         # Quiz is complete, show the result
         score = session["score"]
         answers = session["answers"]
+        # Reset session variables
         session.pop("current_question", "None")
         session.pop("score", "None")
         session.pop("answers", "None")
 
-        print("Satir 45")
-        return render_template("result.html", score=score, total=len(manager.flashcards), answers=answers)
+        return render_template("result.html", score=score, total=len(manager.quizcards), answers=answers)
         
-    card = manager.flashcards[current_question]
+    card = manager.quizcards[current_question]
 
     if request.method == "POST":
         user_answer = request.form.get("answer", "").strip()
@@ -59,10 +57,13 @@ def start_quiz():
             "is_correct": is_correct
         })
         session["current_question"] += 1
-        session.modified = True  # Ensure session changes are saved
-        return redirect(url_for("start_quiz"))  # Redirect to the next question
+        session.modified = True  # Save the session changes
+        return redirect(url_for("start_question"))  # Pass to the next question
 
-    return render_template("question.html", card=card, question_number=current_question + 1, total=len(manager.flashcards))
+    return render_template("question.html", card=card, question_number=current_question + 1, total=len(manager.quizcards))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5002, debug=True)
+    try:
+        app.run(host="0.0.0.0", port=5002, debug=True)
+    except Exception as e:
+        print("An error occurred while running the app:", e)

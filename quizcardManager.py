@@ -1,13 +1,13 @@
 import json
-from flashcard import flashcard
+from quizcard import quizcard
 
-class FlashcardManager:
+class QuizcardManager:
     def __init__(self, file_path):
         self.file_path = file_path
-        self.flashcards = self.load_flashcards()
+        self.quizcards = self.load_quizcards()
     
-    def load_flashcards(self):
+    def load_quizcards(self):
         # Load questions from the JSON file
         with open(self.file_path, "r", encoding="utf-8") as file:
             data = json.load(file)
-            return [flashcard(item["term"], item["definition"]) for item in data]
+            return [quizcard(item["term"], item["definition"]) for item in data]
