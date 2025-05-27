@@ -1,61 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Question {{ question_number }}</title>
+    <title>BioQ: Q{{ question_number }}</title>
     <style>
-        button {
-            font-size: 1.5rem;
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 30px;
+        .submit-btn {
+            font-size: 1.2rem;
+            background: #2e8b57;
+            color: #fff;
+            padding: 12px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            margin-top: 10px;
         }
-        button:hover {
-            background-color: #45a049;
+        .submit-btn:hover {
+            background: #218c5a;
         }
-        .back-button {
+        .return-link {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 22px;
             text-decoration: none;
-            color: #333;
-            background-color: white;
-            padding: 8px 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            color: #2e8b57;
+            background: #f9f9f9;
+            padding: 7px 15px;
+            border: 1px solid #b2bec3;
+            border-radius: 6px;
             font-size: 1rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .back-button:hover {
-            background-color: #f4f4f4;
-            color: black;
+        .return-link:hover {
+            background: #e0eafc;
         }
-        input[type="text"] {
+        .input-answer {
+            font-size: 1.2rem;
+            width: 90%;
+            max-width: 420px;
+            padding: 9px;
+            margin-top: 18px;
+            border: 1px solid #b2bec3;
+            border-radius: 6px;
+        }
+        .definition-text {
             font-size: 1.5rem;
-            width: 100%;
-            max-width: 500px;
-            padding: 10px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        input[type="text"]:focus {
-            border-color: #4CAF50;
-            outline: none;
+            font-weight: normal;
+            margin: 18px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Question {{ question_number }} of {{ total }}</h1>
-    <p><strong>Definition:</strong> {{ card.definition }}</p>
+    <h2>Question {{ question_number }} / {{ total }}</h2>
+    <div class="definition-text">
+        <strong>Definition:</strong> {{ card.definition }}
+    </div>
     <form method="POST">
-        <input type="text" name="answer" placeholder="Enter the term" required>
-        <button type="submit">Submit</button>
+        <input type="text" name="answer" class="input-answer" placeholder="Type your answer here" required>
+        <button type="submit" class="submit-btn">Submit</button>
     </form>
-    <a href="/general_biology_quiz/reset" class="back-button">Go Back to Home</a>
+    <a href="/general_biology_quiz/reset" class="return-link">Return to Home</a>
 </body>
 </html>

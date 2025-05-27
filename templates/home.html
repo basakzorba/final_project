@@ -6,44 +6,61 @@
     <title>General Biology Quiz</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(120deg, #e0eafc, #cfdef3);
+            color: #1a2a2a;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
         }
         h1 {
-            color: #4CAF50;
-            font-size: 3rem;
-            margin-bottom: 20px;
+            color: #2e8b57;
+            font-size: 2.7rem;
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px #b2bec3;
         }
-        .button-container {
+        .nav-area {
             display: flex;
-            gap: 20px;
+            gap: 18px;
         }
-        a {
+        .nav-link {
             text-decoration: none;
-            color: white;
-            background-color: #4CAF50;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            transition: background-color 0.3s ease;
+            color: #fff;
+            background: #2e8b57;
+            padding: 13px 30px;
+            border-radius: 8px;
+            font-size: 1.15rem;
+            box-shadow: 1px 2px 8px #b2bec3;
+            transition: background 0.2s;
         }
-        a:hover {
-            background-color: #45a049;
+        .nav-link:hover {
+            background: #218c5a;
+        }
+        .footer-note {
+            margin-top: 40px;
+            font-size: 0.97rem;
+            color: #888;
+        }
+        .logo {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to the General Biology Quiz!</h1>
-    <div class="button-container">
-        <a href="/general_biology_quiz/start_question">Start Quiz</a>
+    <img src="https://img.icons8.com/ios-filled/100/2e8b57/leaf.png" alt="Quiz Logo" class="logo"/>
+    <h1>General Biology Quiz</h1>
+    <div class="nav-area">
+        <a href="/general_biology_quiz/start_question" class="nav-link">Start Quiz</a>
+    </div>
+    <div class="footer-note">
+        <p>Created by Basak Isil Zorba &mdash; 2025 &bull; Python Course Final Project</p>
     </div>
 </body>
 </html>

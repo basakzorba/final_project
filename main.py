@@ -5,7 +5,6 @@ from pathlib import Path
 app = Flask(__name__)
 app.secret_key = "basak"
 
-# Use a relative path for the JSON file
 file_path = Path(__file__).parent / "quizcards.json"
 manager = QuizcardManager(file_path)
 
@@ -27,16 +26,16 @@ def reset():
 @app.route("/general_biology_quiz/start_question", methods=["GET","POST"])
 def start_question():
     if "current_question" not in session:
-        session["current_question"] = 0 # Store the current question index
-        session["score"] = 0 # Store user's score
-        session["answers"] = []  # Store user's answers
+        session["current_question"] = 0 #current question number
+        session["score"] = 0 #user's score
+        session["answers"] = []  #user's answers
 
     current_question = session["current_question"]
     if current_question >= len(manager.quizcards):
-        # Quiz is complete, show the result
-        score = session["score"]
+        score = session["score"] #quiz is completed, show the result
         answers = session["answers"]
-        # Reset session variables
+        
+        #reset session variables
         session.pop("current_question", "None")
         session.pop("score", "None")
         session.pop("answers", "None")
@@ -54,11 +53,10 @@ def start_question():
             "term": card.term,
             "definition": card.definition,
             "user_answer": user_answer,
-            "is_correct": is_correct
-        })
+            "is_correct": is_correct})
         session["current_question"] += 1
-        session.modified = True  # Save the session changes
-        return redirect(url_for("start_question"))  # Pass to the next question
+        session.modified = True  #save the session changes
+        return redirect(url_for("start_question"))  #pass to the next question
 
     return render_template("question.html", card=card, question_number=current_question + 1, total=len(manager.quizcards))
 

@@ -7,7 +7,10 @@ class QuizcardManager:
         self.quizcards = self.load_quizcards()
     
     def load_quizcards(self):
-        # Load questions from the JSON file
-        with open(self.file_path, "r", encoding="utf-8") as file:
-            data = json.load(file)
-            return [quizcard(item["term"], item["definition"]) for item in data]
+        try:
+            with open(self.file_path, "r", encoding="utf-8") as file:
+                data = json.load(file)
+                return [quizcard(item["term"], item["definition"]) for item in data]
+        except FileNotFoundError:
+            print(f"Error: JSON File '{self.file_path}' was not found")
+            return []
